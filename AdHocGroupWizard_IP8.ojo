@@ -1,0 +1,991 @@
+<?xml version="1.0"?>
+<BES>
+  <Wizard>
+    <Title>Ad-Hoc Group - UI</Title>
+   <UIHooks Menu="Wi&amp;zards" NavBar="Wizards" LaunchType="Document"></UIHooks>
+    <DefaultPage>Page1</DefaultPage>
+    <Page Name="Page1">
+      <Title>Ad-Hoc Group Wizard</Title>
+      <HTML>
+        <![CDATA[
+		
+		
+		
+<head>
+		<!-- Style for Button Pulled here http://www.bestcssbuttongenerator.com/#/12 -->
+		<style>
+			.hidden { display: none; }
+			.unhidden { display: block;}
+									
+									
+			.textstyle{
+				color: #000000;
+				FONT-SIZE: 9pt;
+				font-family: Verdana, Arial, Helvetica, sans-serif;
+				font-weight: normal;
+				text-align: left;
+				line-height: 1.9em;
+			}
+												
+			.myButton {
+				-moz-box-shadow:inset 0px 1px 0px 0px #9fb4f2;
+				-webkit-box-shadow:inset 0px 1px 0px 0px #9fb4f2;
+				box-shadow:inset 0px 1px 0px 0px #9fb4f2;
+				background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7892c2), color-stop(1, #476e9e));
+				background:-moz-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+				background:-webkit-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+				background:-o-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+				background:-ms-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+				background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7892c2', endColorstr='#476e9e',GradientType=0);
+				background-color:#7892c2;
+				-moz-border-radius:3px;
+				-webkit-border-radius:3px;
+				border-radius:3px;
+				border:1px solid #4e6096;
+				display:inline-block;
+				cursor:pointer;
+				color:#ffffff;
+				font-family:Arial;
+				font-size:13px;
+				padding:2px 24px;
+				text-decoration:none;
+				text-shadow:0px 1px 0px #283966;
+			}
+			.myButton:hover {
+				background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #476e9e), color-stop(1, #7892c2));
+				background:-moz-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+				background:-webkit-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+				background:-o-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+				background:-ms-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+				background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#476e9e', endColorstr='#7892c2',GradientType=0);
+				background-color:#476e9e;
+			}
+			.myButton:active {
+				position:relative;
+				top:1px;
+			}
+
+			.myTextareaFull{
+				width: 500px;
+				height: 250px;
+				border: 3px solid #cccccc;
+				padding: 5px;
+				font-family: Tahoma, sans-serif;
+			}
+
+			.myTextareaHalf{
+				width: 500px;
+				height: 110px;
+				border: 3px solid #cccccc;
+				padding: 5px;
+				font-family: Tahoma, sans-serif;
+			}
+			
+			.pannelDivBorder{
+				background-color: #ffffff;
+				border: 2px solid #999999;
+				-moz-border-radius: 8px;
+				-webkit-border-radius: 8px;
+				border-radius: 8px;
+				/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
+				opacity: 0.82;
+				-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity = 82);
+				/*-ms-filter must come before filter*/
+				filter: alpha(opacity = 82);
+				/*INNER ELEMENTS MUST NOT BREAK THIS ELEMENTS BOUNDARIES*/
+				/*All filters must be placed together*/
+			}
+
+			select {
+				padding:25px;
+				margin: 0;
+				-webkit-border-radius:4px;
+				-moz-border-radius:4px;
+				border-radius:2px;
+				-webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+				-moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+				box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+				background: #f8f8f8;
+				color:#555858;
+				border:none;
+				outline:none;
+				display: inline-block;
+				-webkit-appearance:none;
+				-moz-appearance:none;
+				appearance:none;
+				cursor:pointer;
+			}
+
+			
+		</style>
+			
+</head>	
+				  
+				<body>
+					<div id="div_border" class="pannelDivBorder">
+						<table cellpadding= 5>
+							<tr>
+								<td colspan="2">
+									<span><font size="2">AVP Developed</font></span>
+									<br>
+									<H4 align="center">Ad-Hoc Group Computer Group Wizard</H4>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<span id='descript' class='textstyle'><b>Description:</b> This dashboard will allow the operator to input a list of computer names or IP Addresses (v4). The wizard will then query the console cache (limited to the console user view) and retreive the associated computer IDs (if the machine is managed). If the machine is not within the system a line entry will be added to the log view. Once the Computer IDs are retrieved, the operator can then select to create an adhoc group. The operator can also directly input a list of computer ID's within the Computer IDs text area and create an Ad-Hoc computer group based on that input as well. <br> <b>Known Limitation</b> - Ad-Hoc Computer Groups cannot exceed 1000 machines.  </span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div style="float:right" >
+										<span class='textstyle' align="left" >Paste a list of IPv4 addresses or Computer names below:</span>
+										<br/>
+										<textarea class="myTextareaFull" align="right" id="txt_input_list" rows=20 cols=60 ></textarea>
+										<br/>
+									
+										<span class='textstyle'>Retrieve Compueter ID by: </span>
+										
+											<select id ='sel_type_query'>
+												<option value="ip">IP Address List</option>
+												<option value="name">Host List</option>
+											</select>
+										
+										<span>  </span>	
+										<button class='myButton' onclick="js_start_process()">Go!</button>
+									</div>	
+								</td>
+								
+								<td align="left">
+									<div>
+										<span class='textstyle'>Log View:</span>
+										<br>
+										<textarea class="myTextareaHalf" rows=9 cols=60 id="txt_error_list"></textarea>
+									</div>	
+									<div>
+										<span class='textstyle'>Computer IDs:</span>
+										<br>
+										<textarea class="myTextareaHalf" rows=9 cols=60 id="txt_compids_list"></textarea
+									</div>
+									<br/>
+									<button class='myButton' onclick="js_generate_adhoc()">Generate Ad-Hoc Group</button>
+									<span  STYLE="color: 6277A3; font-size: 9pt" id="spn_computeridstats"></span>								
+								</td>
+								
+							</tr>
+							<TR>
+								<TD colspan="2">
+									<span style="float:right" ><font size="1">ver 1.8.a</font></span>
+								</td>
+							</TR>
+							<tr>
+								<td align="center" colspan="2">
+									<div id='stats_div'>
+										<table border = 1>
+											<tr>
+												<td>
+													<span STYLE="color: 6277A3; font-size: 9pt" id="spn_stats"></span>
+												</td>
+											</tr>
+											<tr>
+												<td  style= "width:1000px"">
+													<span id="status"></span>
+												</td>
+											</tr>
+										</table>
+									</div>	
+								</td>
+							</tr>
+						</table>
+					</div>	
+				</body>
+				  
+				  
+				  
+<script type="text/javascript">
+//calling the loader
+js_onload()					
+
+/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////[Loader Fn]///////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+function js_onload(){
+	//This FN is called at start up 
+
+	document.getElementById("stats_div").className = "hidden";
+	
+	//Fix for IE Trim
+	// Adding trim function to String object
+	if(typeof String.prototype.trim !== 'function') {
+	  String.prototype.trim = function() {
+		return this.replace(/^\s+|\s+$/g, '');
+	  }
+	}
+	
+	//Prototype for contains in array
+	Array.prototype.contains = function(obj) {
+		var i = this.length;
+		while (i--) {
+			if (this[i] == obj) {
+				return true;
+			}
+		}
+		return false;
+	}
+}
+
+
+//This is called when the user clicks the Go! button					
+function js_start_process(){
+	
+	//unhide our stats div
+	document.getElementById("stats_div").className = "unhidden";
+	//So here lets get the object
+	var inputval = document.getElementById("txt_input_list")
+	var inputseltype = document.getElementById("sel_type_query").value
+	js_debug('input type= ' + inputseltype )
+	
+	//here lets get the value of the object
+	var rawval = inputval.value
+	//lets split the value by line breaks, and then this returns an array
+	var linesarray = new Array()
+		linesarray = rawval.split("\n")
+	//Lets log the length, so we know how many lines are in there...
+	js_debug('Total Num of lines = ' + linesarray.length)
+	//now lets use the prototype fn to get unique liens	, and lets see how many objects we have...
+
+	var unique_array = new Array()
+	for (var i = 0; i< linesarray.length; i++){
+		//This is how we get one element within the array
+		var currentline = linesarray[i]
+		//if the line is not null
+		if (currentline.length != 0) {
+
+			//array has been assembeld lets check if the element is already in the uniq array
+			if (unique_array.contains(currentline.trim())) {
+				//we already have the line in the array
+				//..So we dont need to do anything
+				js_ui_add_error_list(currentline.trim() + ' - line is duplicated')
+			}
+			else{
+				//IP Select Type was selected
+				if (inputseltype == 'ip') {
+					
+							//lets check if this is an IP address format via a regex
+						if (js_isipv4(currentline.trim())){
+							//this is a new element, lets push it 
+							unique_array.push(currentline.trim())	
+						}
+						else{
+							//This was not a valid ip v4 addi
+							var msg = currentline.trim() + " -Invalid IP Address" 
+							js_error(msg)
+							js_ui_add_error_list(msg)
+							
+						}
+				}
+				else if (inputseltype == 'name') {
+					//runing through name code block
+					
+						if (js_isname(currentline.trim())){
+							//this is a new element, lets push it 
+							unique_array.push(currentline.trim())	
+						}
+					
+				}
+				else {
+					js_error('Unexpected Code path fired, exiting @ location 1') 
+					return;
+						
+				}
+
+			}
+				
+		}	
+	}
+	
+	//Debug 411
+	js_debug('Unique Num of lines = ' + unique_array.length)
+	
+	//if the number if unique is 0 then the block is empty or all the input was invalid
+	if (unique_array.length == 0) {
+		//force exist of function...
+		alert('Error No input was recieved... looks like the text box is empty or the input may not be valid' )
+		//this will exit the code branch
+		return;
+	}
+	
+	else {
+		//reset the txt area
+		//js_ui_reset_txtareas()
+		
+		//If the user select IP address type get ready to fire the queries
+		if (inputseltype == 'ip') {
+			
+				//This is an IP type 
+				for (var i = 0; i< unique_array.length; i++) {
+					var trailerobj = new Object()
+					trailerobj.ip = unique_array[i]
+					trailerobj.name = ''
+					trailerobj.type = 'ip'
+				
+					var query = '(ids of computers of it) of results whose (exist value whose (it = "'+ trailerobj.ip +'") of it ) of (bes property whose (name of it = "IP Address" and reserved flag of it))'
+					//Here we are calling to the async handler
+					js_debug('Passing Query to async handler ' + query)
+					js_async(query,trailerobj)
+				}	
+			
+		}
+		else if (inputseltype == 'name') {
+			
+				for (var i = 0; i< unique_array.length; i++) {
+					var trailerobj = new Object()
+					trailerobj.name = unique_array[i]
+					trailerobj.ip =''
+					trailerobj.type = 'name'
+				
+					var query = '(ids of it) of bes computers whose (name of it as lowercase  = "' + trailerobj.name.toLowerCase() +'")'
+					
+					//Here we are calling to the async handler
+					js_debug('Passing Query to async handler ' + query)
+					js_async(query,trailerobj)
+				}	
+			
+			
+		}
+		else {
+				js_error('Unexpected Code path fired, exiting @ location 2') 
+				return;
+			}
+
+	}
+
+}
+					
+					
+function js_generate_adhoc() {
+//This function creates the Adhoc Group	
+
+	var id= 'txt_compids_list'
+	var ob = document.getElementById(id)
+	
+	//here lets get the value of the object
+	var rawval = ob.value
+	//lets split the value by line breaks, and then this returns an array
+	var linesarray = new Array()
+	 linesarray = rawval.split("\n")
+	//Lets log the length, so we know how many lines are in there...
+	js_debug('Total Num of lines = ' + linesarray.length)
+	//now lets use the prototype fn to get unique liens	, and lets see how many objects we have...
+	
+
+	//if we dont have lines in the computer id list 
+	if ((linesarray.length == 0) || (ob.value == '')){
+		js_error('No Computer Ids were defined within the Computer ID txt area...' )
+		//killing process out
+		return
+	}
+	
+	else { //go forward
+		//The Number of lines is good.
+		var idarray = new Array();
+		for (var i = 0; i< linesarray.length; i++) {
+				var tmp = linesarray[i]
+				if (idarray.contains(tmp.trim()))
+				{	
+					//Write to the error txt area
+					js_ui_add_error_list( + tmp.trim() + ' - Client ID is duplicated')
+				}
+				else {
+					
+					idarray.push(tmp.trim())	
+				}
+				
+				
+		}
+		
+		document.getElementById("spn_computeridstats").innerHTML =  ' ' + idarray.length + ' Unique Ids of '+ linesarray.length + ' provided'
+		
+		//The amount of unique ids is greater than 1K
+		if (idarray.length > 1000) {
+				js_error('The amount of computer ids cannot exceed 1000 \n \n There are currently [' + linesarray.length + '] ids specified' )
+				//killing process out
+				return
+		}
+		else{
+			
+			
+			setTimeout(function(){
+				var msg = ''
+					msg += 'This will create an Ad-Hoc Computer Group, which will navigate away from this wizard. \n\n To get back to this wizard, click the back button within your console.'
+					msg += ' \n Debug info: ' + idarray.length + ' Unique Ids of '+ linesarray.length + ' provided'
+				js_message(msg)
+				OpenComputerGroup(idarray)
+			},2000);
+		}	
+	}	
+}	
+
+/////////////////////////////////////////////////////////////////////////////
+////////////////////////////////[UI Fns]/////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+				
+function js_ui_reset_txtareas(){
+//This function clears the 2 managed txt box inputs	
+	js_debug('Clearning output txt areas')
+	//Clearning Error List
+	var id= 'txt_error_list'
+	var ob = document.getElementById(id)
+	ob.value = ''
+	
+	//Clearing Compids list
+	var id= 'txt_compids_list'
+	var ob = document.getElementById(id)
+	ob.value = ''
+}
+
+function js_ui_add_compid_list(text){
+//This is a wrapper function for adding a compid line
+	var id= 'txt_compids_list'
+	js_ui_add_to_txtbox(id,text)
+}
+
+function js_ui_add_error_list(text){
+//This is a wrapper function for adding the error line
+	var id= 'txt_error_list'
+	js_ui_add_to_txtbox(id,text)
+}
+					
+function js_ui_add_to_txtbox(dom_obj_id,addtext) {
+//Here we take two args, arg1 the id of the object for the txt area	
+//arg 2, the txt we want to add
+//we then test to see if the value is null and if it is we add our line, if it is not we add a clear line feed and then our text
+	var ob = document.getElementById(dom_obj_id)
+	//var curval = ob.value
+	if (ob.value == '') {ob.value = addtext}
+	else {
+		ob.value +=  '\n' + addtext
+	}
+}
+
+function js_ui_updatestats(){
+
+	var id = 'spn_stats'
+	var percent = ( global_query_queue_total_batch_progress_counter / global_total_batch_total_counter) * 100;	
+	var msg =  '<b>% Complete = ' +  percent.toFixed(2) + '%</b><BR> Total Queries Sent = ' +  global_total_batch_total_counter + '<br> Calls Completed = ' + global_query_queue_total_batch_progress_counter + '<br>Queries Currently Open= ' + global_total_open_query_counter+ '<BR> Successful Calls = ' + global_total_batch_success_counter + '<br> Failed Calls = ' + global_total_batch_error_counter +'<br> Queue Delay Metric = ' + global_query_queue_instance_tracker + '' 
+	document.getElementById(id).innerHTML = msg;
+	if (percent >= 100) {
+		js_message('All Calls have Completed.' )
+		js_debug(msg)
+		document.getElementById(id).innerHTML = '<font color="green">All Calls Completed</font>';
+	}
+}
+					
+/////////////////////////////////////////////////////////////////////////////
+////////////////////////[Simple Async Handler]///////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+function js_async(query,opt_obj){
+	//This function manages async calls as a queue... It allows only a certain number of concurrent calls. and manages the callbacks. 
+	//this function takes to params... 1 being the query, the other being an object that trails any information we need to the other side of the async call..
+	
+	//if the query queue has not been initialized... then lets set the instance tracker to sub one of the threshold initially 
+	//and then set the global_query_queue_initialized variable to know we have the queue initialized, we also start the timer...
+
+	if ((typeof(global_query_queue_initialized) == 'undefined')) {
+		//This means the variable was undefined... so we need to initialize it
+		global_query_queue_initialized = false 
+
+	}
+		
+	   if (global_query_queue_initialized == false) {
+		 //This should only run the first time the queue is initialized, NOT per query... but only the first time. 
+		 //These are global vars 
+		js_debug('a query queue will be initialized, all variables will be set to initial values')
+		global_query_queue_call_threshold = 2 //This iis the number of async calls to fire aync yet concurrently :) This needs to be 1 to allow sync operations without freezing the ui
+		global_query_queue_call_multiplier = 50 //this is a multiplier for delaying calls in ms as more calls are queued
+		global_query_queue_instance_tracker = global_query_queue_call_threshold -1 //Set the 
+		global_query_queue_initialized = true //by setting this breadcrumb we will not loop back into this if statement, until the initialization var is reset back to false, which should only occur if the same var was set to false
+		global_total_open_query_counter = 0	//Counter keeps tracks of calls in and out will be 0 if all returned
+		global_total_batch_total_counter = 0 //This is the total amount of queries throwm to the queue
+		global_total_batch_error_counter = 0 //This is the total amount of errored queries that have completed
+		global_total_batch_success_counter = 0 //This is the total amount of successful queries that have completed
+		global_query_queue_total_batch_progress_counter = 0 //This is a running counter of calls that have called back to the call_back (ie. Completed Calls ran through queue)
+		global_query_queue_start_time = new Date() //This sets the initial start time that the queue was created so we can calulate things like queries per sec
+	}
+	
+	js_ui_updatestats()
+	
+	//so this is how we tell if the call originated externally or from the queue calling back to itself (slowing up work)
+	if (arguments.length == 2) {
+		//update stats
+		
+		//add to talley of calls sourced externally, so we know how many calls will be done in total.
+		global_total_batch_total_counter++
+	}
+
+	//global_query_queue_instance_tracker keeps track of how many times the queue caller has called back to itself... This allows me to slow things down as more calls are queued up.
+	global_query_queue_instance_tracker ++
+	
+		 // so if the number of open calls is > the number of calls limited by the queue then lets sleep a bit, and multiply the instance tracker
+		 if (global_total_open_query_counter > global_query_queue_call_threshold) { 
+
+			//Check in a few miliseconds * the ms multiplyer... So as more queue calls get behind, we should slow down because global_query_queue_instance_tracker will get bigger
+			//The name of this function is important, as this is how we know if the function called back to itself
+			setTimeout(function js_async_queue_it_up(){
+					//js_debug('pushing back in queue')
+					//We add an additional argument here so that we know up to if the function was called here, or externally...
+					js_async(query,opt_obj,'recall_flag')
+			 }, global_query_queue_call_multiplier * global_query_queue_instance_tracker )
+		  } 
+		 
+		  else {
+			  
+								//there is some space in the queue so - fire another query
+								js_debug('Firing query through handler' + query) 
+								//So here we clear the global_query_queue_instance_tracker variable to allow the delay settings to speed up again
+								global_query_queue_instance_tracker = global_query_queue_call_threshold -1
+							
+								//So these breadcrumbs are passed through the async call function to the other side.
+								var tmpobj = new Object()
+									tmpobj.query  = query
+									tmpobj.ip_address = opt_obj.ip
+									tmpobj.name = opt_obj.name
+									tmpobj.type = opt_obj.type
+								
+								//So this is where the actual call is thrown
+								global_total_open_query_counter ++
+								Relevance( query, {
+									arg:tmpobj,
+									//So if the call was good we go down this code branch
+									success: function ( result, arg) { 
+									
+										global_total_open_query_counter = global_total_open_query_counter - 1
+										global_query_queue_total_batch_progress_counter ++	
+										global_total_batch_success_counter ++
+										
+											//js_debug('A result has been recieved from query: '+ query +', result length at ' + result.length)
+											//if the first element is undefined then the result was null, so that means no machines met the query output
+											if (result[0] == undefined) {
+												//If its an IP type of query
+												if (tmpobj.type == 'ip') {
+													
+													var msg = tmpobj.ip_address + ' - IP not found'
+													//Add to the error box
+													js_ui_add_error_list(msg)
+													js_debug(msg + '<br>Query was: ' + tmpobj.query)
+												}
+												
+												//if its a name type of query 
+												else if (tmpobj.type == 'name'){
+													var msg = tmpobj.name + ' - Name not found'
+													js_ui_add_error_list(msg)
+													js_debug(msg + '<br>Query was: ' + tmpobj.query)
+												}
+												
+												//unexpected path 
+												else {
+													
+													js_error('Unexpected Code path fired, exiting @ location 3') 
+													return;
+												}
+
+											} else {//we had at least one return
+												
+													if (tmpobj.type == 'ip') {
+														 for (var z=0; z< result.length; z++) {
+																var msg = 'Result Element Recieved for IP: ' + tmpobj.ip_address + '<br> Results for element [' + z + '] is: ' + result[z]
+																js_debug(msg)
+																
+																//adding to ComputerID txt box
+																js_ui_add_compid_list(result[z])
+															
+														 }
+													}
+													else if (tmpobj.type == 'name'){ 
+
+														for (var z=0; z< result.length; z++) {
+																var msg = 'Result Element Recieved for Name: ' + tmpobj.name + '<br> Results for element [' + z + '] is: ' + result[z]
+																js_debug(msg)
+															
+																//adding to ComputerID txt box
+																js_ui_add_compid_list(result[z])
+														 }
+													}
+											}
+											
+										//Update UI Stats
+										js_ui_updatestats()
+									},  
+									//if something was bad in the query we go down this code branch
+									failure: function ( error, arg ) { 
+										js_error('Query Error in = ' +  tmpobj.query  + ' Error detail: ' + error)
+										global_query_queue_total_batch_progress_counter ++
+										global_total_batch_error_counter ++
+										global_total_open_query_counter --
+										
+										//Update UI Stats
+											js_ui_updatestats()
+									}
+									
+									
+								});
+							
+			
+		  }
+}	
+					
+					
+/////////////////////////////////////////////////////////////////////////////
+////////////////////////[Input Validation Fns]///////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+function js_isipv4(inputText){  
+	 var ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;  
+	 if(inputText.match(ipformat)){  
+		return true;  
+	 }  
+		else  
+	 {  return false; }  
+ } 
+ 
+ function js_isname(inputText){
+	 //WORK TO DO
+	 //This Function will eventually be used for validing computer names
+	 //it will need to return false if the input txt variable does not meet standard computer naming conventions
+	 //it will return true if it is a valid computer name
+	 return true
+	 
+}
+	 
+				
+/////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////[Debug Global Vars]///////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+var js_debug_debug_core_div_gbl_var;
+var js_debug_debug_wrapper_div_gbl_var
+var js_debug_chkbox_core_div_gbl_var
+var js_debug_chkbox_wrapper_div_gbl_var
+var js_debug_reverse_debug_order_bit_gbl_var
+var js_debug_alert_on_error_gbl_var //If set to false, the error alerts will not be shown, default is true
+var js_debug_max_event_count
+var js_debug_max_event_count_limit
+var js_debug_input_max_limit_text_var
+var js_debug_log_function_args    //If set to True function arguments will be logged, default is false
+
+if (js_debug_log_function_args  == null) {js_debug_log_function_args = false}
+if (js_debug_alert_on_error_gbl_var == null) {js_debug_alert_on_error_gbl_var = true}
+if (js_debug_max_event_count == null || js_debug_max_event_count == '') {js_debug_max_event_count = 0}
+if (js_debug_max_event_count_limit == null || js_debug_max_event_count_limit == '') {js_debug_max_event_count_limit = 200}
+
+  function js_debug_change_debug_log_order() {
+    if (js_debug_reverse_debug_order_bit_gbl_var == true)
+    {js_debug_reverse_debug_order_bit_gbl_var = false;  js_debug('Log Order has been chanded to forward order')}
+    else
+    {js_debug_reverse_debug_order_bit_gbl_var = true; js_debug('Log Order has been changed to reverse order')}
+    js_debug_cleardebug()
+  }
+  
+  
+  function js_debug_change_alert_on_error() {
+    if (js_debug_alert_on_error_gbl_var == true)
+    {js_debug_alert_on_error_gbl_var = false;  js_debug('Alert on error set to False')}
+    else
+    {js_debug_alert_on_error_gbl_var = true; js_debug('Alert on error set to: True')}
+  }  
+
+function js_debug_css_set_showdebugdiv() {
+    //Relies on CSS mod
+   if (js_debug_debug_wrapper_div_gbl_var) {js_debug_debug_wrapper_div_gbl_var.className='unhidden'}
+   if (js_debug_chkbox_wrapper_div_gbl_var) {js_debug_chkbox_wrapper_div_gbl_var.className='hidden'}
+   var chkbox = document.getElementById("chkbx_enabledebug");
+   chkbox.checked = false
+ }
+ 
+function js_debug_css_set_hidedebugdiv() {
+ if (js_debug_debug_wrapper_div_gbl_var) {js_debug_debug_wrapper_div_gbl_var.className='hidden' }
+ if (js_debug_chkbox_wrapper_div_gbl_var) {js_debug_chkbox_wrapper_div_gbl_var.className='unhidden'}
+  
+   var chkbox = document.getElementById("chkbx_enabledebug");
+   chkbox.checked = false
+ }
+ 
+ function js_debug_check_log_limit() {
+  js_debug_max_event_count = js_debug_max_event_count  + 1
+  if (js_debug_max_event_count >= js_debug_max_event_count_limit ) {js_debug_cleardebug() ;js_debug_max_event_count = 0}
+ }
+
+
+// call this function from a script within the document for which to enable debug output
+function js_debug_enabledebug() {
+  //Set defaults for global config vars
+ 
+   js_debug_reverse_debug_order_bit_gbl_var = false
+   //js_debug_alert_on_error_gbl_var = true
+   
+  document.write("<div id='div_debugwrapper'><div id='debugContent' style='display:block; position:absolute; top:7px; right:20px; padding:10px; width:800px; height:350px; background:#F0F0F0 ; color:black; border:solid 1px black; overflow:auto;'></div></div>");
+  js_debug_debug_core_div_gbl_var = document.getElementById("debugContent");
+  js_debug_debug_wrapper_div_gbl_var = document.getElementById("div_debugwrapper"); 
+  //js_debug_debug_header_div_gbl_var = document.getElementById("div_debugheader"); 
+
+  js_debug_writeClearLink();
+  
+  document.write("<div id='div_chkbox_wrapper'><div id='div_debug_chkbox' style='display:block; position:absolute; top:7px; right:20px; padding:5px; width:120px; height:25px; background:#FFFFFF ; color:black; border:solid 1px #555555;'></div></div>")
+  js_debug_chkbox_core_div_gbl_var = document.getElementById("div_debug_chkbox");
+  js_debug_chkbox_wrapper_div_gbl_var = document.getElementById("div_chkbox_wrapper");
+  js_debug_input_max_limit_text_var = document.getElementById("js_debug_input_max_event_count_limit")
+  //Set default log order  
+  
+  js_debug_writedebugchkbox()
+  //Set the original Div assignments
+ js_debug_css_set_hidedebugdiv()
+}
+
+
+// writes the string passed to it to the page
+function js_error(message) {
+js_debug_check_log_limit()  
+//Parent Calling function block
+var fname= "" + arguments.callee.caller.toString().split("{", 1)[0].slice(9).replace(/\s/gi, "");
+if (js_debug_log_function_args == true) {
+var args = "";
+for( var i=0; i < arguments.callee.caller.arguments.length; i++ ) {
+   args += ", " + arguments.callee.caller.arguments[i];
+}
+args = args.slice(2);
+var advsubprocedure = (fname + "\n" + "<br><b>Args: </b>" + args);
+}
+else {advsubprocedure = "<b>Args Not Logged</b>"}
+var parentarg = arguments.callee.caller.toString().split("{", 1)[0].split(" ",2)[1]
+//End Function Block 
+  var d = new Date()
+  var now = d.toString();
+  if (js_debug_debug_core_div_gbl_var)  { 
+   if (js_debug_reverse_debug_order_bit_gbl_var == true ) {
+            var currenthtml =  js_debug_debug_core_div_gbl_var.innerHTML 
+            js_debug_debug_core_div_gbl_var.innerHTML = '<b><font color="Red">Error: <br>' + 'Time: </b>' + now +'<br>'+ '<b>Calling Function: </b>' + advsubprocedure  + '<br><b>Message: </b>' +  message + "<br><br\/></font>" + currenthtml;
+        }
+       else {
+            var currenthtml =  js_debug_debug_core_div_gbl_var.innerHTML 
+            js_debug_debug_core_div_gbl_var.innerHTML += '<b><font color="Red">Error: <br>' + 'Time: </b>' + now +'<br>'+ '<b>Calling Function: </b>' + advsubprocedure  + '<br><b>Message: </b>' +  message + "<br><br\/></font>";
+        }     
+  }    
+      if (js_debug_alert_on_error_gbl_var == true) {alert('[Error] ' + message)}        
+            
+}
+
+function js_warning(message) {
+js_debug_check_log_limit()
+//Parent Calling function block
+var fname= "" + arguments.callee.caller.toString().split("{", 1)[0].slice(9).replace(/\s/gi, "");
+if (js_debug_log_function_args == true) {
+var args = "";
+for( var i=0; i < arguments.callee.caller.arguments.length; i++ ) {
+   args += ", " + arguments.callee.caller.arguments[i];
+}
+args = args.slice(2);
+var advsubprocedure = (fname + "\n" + "<br><b>Args: </b>" + args);
+}
+else {advsubprocedure = "<b>Args Not Logged</b>"}
+var parentarg = arguments.callee.caller.toString().split("{", 1)[0].split(" ",2)[1]
+//End Function Block 
+  var d = new Date()
+  var now = d.toString();
+    if (js_debug_debug_core_div_gbl_var) {      
+      
+      if (js_debug_reverse_debug_order_bit_gbl_var == true ) {
+            var currenthtml =  js_debug_debug_core_div_gbl_var.innerHTML 
+            js_debug_debug_core_div_gbl_var.innerHTML ='<b><font color="orange">Warning Event</font>: <br>' + 'Time: </b>' + now +'<br>'+ '<b>Calling Function: </b>' + advsubprocedure + '<br><b>Message: </b>' +  message + "<br><br\/>" + currenthtml;
+      }
+      else {
+            js_debug_debug_core_div_gbl_var.innerHTML +='<b><font color="orange">Warning Event</font>: <br>' + 'Time: </b>' + now +'<br>'+ '<b>Calling Function: </b>' + advsubprocedure  + '<br><b>Message: </b>' +  message + "<br><br\/>";     
+          }
+    }      
+ }
+
+
+// writes the string passed to it to the page
+function js_debug(message) {
+ js_debug_check_log_limit()
+//Parent Calling function block
+var fname= "" + arguments.callee.caller.toString().split("{", 1)[0].slice(9).replace(/\s/gi, "");
+if (js_debug_log_function_args == true) {
+var args = "";
+for( var i=0; i < arguments.callee.caller.arguments.length; i++ ) {
+   args += ", " + arguments.callee.caller.arguments[i];
+}
+args = args.slice(2);
+var advsubprocedure = (fname + "\n" + "<br><b>Args: </b>" + args);
+}
+else {advsubprocedure = "<b>Args Not Logged</b>"}
+var parentarg = arguments.callee.caller.toString().split("{", 1)[0].split(" ",2)[1]
+//End Function Block 
+  var d = new Date()
+  var now = d.toString();
+     if (js_debug_debug_core_div_gbl_var) {
+      if (js_debug_reverse_debug_order_bit_gbl_var == true ) {
+            var currenthtml =  js_debug_debug_core_div_gbl_var.innerHTML 
+            js_debug_debug_core_div_gbl_var.innerHTML ='<b><font color="blue">Debug Event</font>: <br>' + 'Time: </b>' + now +'<br>'+ '<b>Calling Function: </b>' + advsubprocedure + '<br><b>Message: </b>' +  message + "<br><br\/>" + currenthtml;
+          }
+      else {
+            js_debug_debug_core_div_gbl_var.innerHTML +='<b><font color="blue">Debug Event</font>: <br>' + 'Time: </b>' + now +'<br>'+ '<b>Calling Function: </b>' + advsubprocedure  + '<br><b>Message: </b>' +  message + "<br><br\/>";     
+          }
+     }
+ }
+
+// writes the string passed to it to the page
+function js_message(message) {
+ js_debug_check_log_limit()
+//Parent Calling function block
+var fname= "" + arguments.callee.caller.toString().split("{", 1)[0].slice(9).replace(/\s/gi, "");
+if (js_debug_log_function_args == true) {
+var args = "";
+for( var i=0; i < arguments.callee.caller.arguments.length; i++ ) {
+   args += ", " + arguments.callee.caller.arguments[i];
+}
+args = args.slice(2);
+var advsubprocedure = (fname + "\n" + "<br><b>Args: </b>" + args);
+}
+else {advsubprocedure = "<b>Args Not Logged</b>"}
+var parentarg = arguments.callee.caller.toString().split("{", 1)[0].split(" ",2)[1]
+//End Function Block 
+  var d = new Date()
+  var now = d.toString();
+     if (js_debug_debug_core_div_gbl_var) {
+      if (js_debug_reverse_debug_order_bit_gbl_var == true ) {
+            var currenthtml =  js_debug_debug_core_div_gbl_var.innerHTML 
+            js_debug_debug_core_div_gbl_var.innerHTML ='<b><font color="#00FF33">Message Event</font>: <br>' + 'Time: </b>' + now +'<br>'+ '<b>Calling Function: </b>' + advsubprocedure + '<br><b>Message: </b>' +  message + "<br><br\/>" + currenthtml;
+            alert(message)
+          }
+      else {
+            js_debug_debug_core_div_gbl_var.innerHTML +='<b><font color="#00FF33">Message Event</font>: <br>' + 'Time: </b>' + now +'<br>'+ '<b>Calling Function: </b>' + advsubprocedure  + '<br><b>Message: </b>' +  message + "<br><br\/>";
+            alert(message)
+          }
+     }
+ }
+
+function js_debug_headerwritedebug(message) {
+  if (js_debug_debug_core_div_gbl_var)
+    js_debug_debug_core_div_gbl_var.innerHTML +=   message + "<br><br\/>";
+}
+
+// writes the value of some code expression.
+// eg: js_debug_writeeval("document.location"); // writes "document.location = http://drewnoakes.com"
+function js_debug_writeeval(code) {
+  js_debug(code + " = " + eval(code));
+}
+
+// writes all of the properties of the object passed to it
+function js_debug_writedebugobject(object) {
+js_debug('properties of object: ' + object)   
+   for (property in object)
+      js_debug('property  ' + property);
+}
+
+// clears the debug output.  called either manually or by the user clicking the 'clear' link in the debug div.
+function js_debug_cleardebug() {
+  if (js_debug_debug_core_div_gbl_var) {
+    js_debug_debug_core_div_gbl_var.innerHTML = "";
+    js_debug_writeClearLink();
+  }
+}
+
+function js_debug_copy_log() {
+
+	var currenthtml =  $('#debugContent').html()
+
+	//alert('a')
+
+	
+	var exportTitle = 'Debug Log'
+	
+	var nwin = window.open('', '_blank', 'scrollbars=1,height=600,width=800,resizable=yes');
+	nwin.document.write("<html><head><title>CSV Export - " + exportTitle + "</title></head><body>")
+	nwin.document.write("<table style=\"width: 95%; text-align: left;\"><tr><td style=\"text-align:left;\">Export of " + exportTitle + " &nbsp; &nbsp; </td><td style=\"text-align:right;\"><span onclick=\"selectText('csvText')\" style=\"cursor:pointer;\">(Ctrl + a = Select All/  Ctrl +C to Copy)</span></td></tr>")
+	nwin.document.write("<tr><td colspan=\"2\"><div id=\"csvText\" cols=\"65\" rows=\"32\">");
+	nwin.document.write(currenthtml);
+	nwin.document.write("\r\n");
+	nwin.document.write("</div</td></tr></table><span style=\"font-size=.9em;\">Use Ctrl+C to Copy.</span></body></html>");
+	nwin.document.close();
+	nwin.focus();
+	
+		$('#csvText').click(function() {
+			// the select() function on the DOM element will do what you want
+			this.select();
+		});
+	
+}
+
+function js_debug_log_function_args_switch() {
+    
+    if ( js_debug_log_function_args == true) {
+        js_debug_log_function_args = false
+        //alert('Function Arguments will not be logged')
+      }
+      else {
+        js_debug_log_function_args = true
+       //alert('Function Arguments will be logged')
+      }
+      js_debug_cleardebug()
+}
+
+function js_debug_return_log_args_string() {
+  if (js_debug_log_function_args == true)
+  {return 'Arguments will be logged'}
+  else {return 'Arguments will not be logged'}
+  
+}
+
+// writes a link in the debug div that clears debug output
+function js_debug_writeClearLink() {
+  var htmltowrite = "<span><b>Debug Log</b></span><br>"
+  htmltowrite += "<a href='#' onclick='js_debug_set_max_event_count_limit(); return false;'>Change Max Event Lmit:</a> "
+  htmltowrite += "<input id='js_debug_input_max_event_count_limit' type='text'size='1' style='width=30px;border=1px solid #000;font-size:10px' value=" + js_debug_max_event_count_limit + "></input><br>"  
+  htmltowrite += "<a href='#' onclick='js_debug_cleardebug(); return false;'>Clear Log </a><br>"
+  htmltowrite += "<a href='#' onclick='js_debug_css_set_hidedebugdiv(); return false;'>Hide Debug</a><br>"
+  htmltowrite += "<a href='#' onclick='js_debug_log_function_args_switch(); return false;'>Log Function Args</a><br>"
+  htmltowrite += "<a href='#' onclick='js_debug_change_debug_log_order(); return false;'>Change Log Order and Clear</a><br>"
+  htmltowrite += "<a href='#' onclick='js_debug_change_alert_on_error(); return false;'>Change Alert on Error</a><br>"
+  htmltowrite += "<a href='#' onclick='js_debug_copy_log(); return false;'>Copy log to external window</a><br><br>"
+  htmltowrite += "Log order will be: "  + js_debug_return_log_order_string() + '<br>'
+  htmltowrite += "Log Args: "  + js_debug_return_log_args_string() + '<br>'
+  htmltowrite += "Alert on Error set to: " + js_debug_alert_on_error_gbl_var
+  js_debug_headerwritedebug(htmltowrite);
+}
+
+function js_debug_set_max_event_count_limit() {
+        var obj = document.getElementById('js_debug_input_max_event_count_limit')
+        var str = obj.value
+        if (js_debug_is_int(str))
+        {alert('Max Event Count will be changed to: ' + str); js_debug_max_event_count_limit = str;  return true;}
+        else {alert('[Error:] Attempting to set mac event limit, value: ' + str + ' is not an interger');return false;}
+        js_debug_cleardebug()
+}
+
+function js_debug_is_int(obj){
+return/^(-|)\d+$/.test(obj);}
+
+function js_debug_return_log_order_string() {
+  if (js_debug_reverse_debug_order_bit_gbl_var == true)
+  {return 'Reverse'}
+  else {return 'Forward'}
+}
+
+function js_debug_writedebugchkbox(){
+      js_debug_chkbox_core_div_gbl_var.innerHTML = "<span id='span_enabledebug_text' font color='red'><font size='1'>Enable Debug: </font></span>"
+      js_debug_chkbox_core_div_gbl_var.innerHTML += "<input type='checkbox' id='chkbx_enabledebug' onclick='js_debug_css_set_showdebugdiv()'/>"  
+}
+js_debug_enabledebug()
+
+////////////////////////////////////////////////////////////////////////////
+///////////////////////////////[END  Debug ]///////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+					
+					</script>					
+				]]>	     
+			</HTML>
+    </Page>
+  </Wizard>
+</BES>
+  
